@@ -15,16 +15,21 @@ class TicTacToeNode
   end
 
   def winning_node?(evaluator)
+    return true if @board.over? && @board.winner != @next_mover_mark
+    return false if @board.over? && @board.winner == @next_mover_mark || nil
+
+
   end
 
-  # This method generates an array of all moves that can be made after
-  # the current move.
+  # This method generates an array of all moves that can be made after the current move.
   def children
+    array = []
     @board.each do |pos|
       if @board.empty?(pos)
-        TicTacToeNode.new(@board.dup, pos, pos) #what should I do with this node?
+        array << TicTacToeNode.new(@board.dup, pos, pos)
       end
     end
+    array
   end
 
 end

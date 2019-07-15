@@ -14,16 +14,16 @@ Phase 1.
             # c. also, set @prev_move_pos to the position you just marked, for reasons that will make sense when we use it later.
     c. write #losing_node?(evaluator)
         # i. Base Case: the board is over AND
-            # a. if winner is the opponent, this is a losing node.
-            # b. if winner is nil or us, this is not a losing node.
+            # a. if WINNER is the opponent, this is a losing node.
+            # b. if WINNER is nil or us, this is not a losing node.
         ii. Recursive case:
             a. It is the player's' turn, and all the children nodes are losers for the player (anywhere they move they still lose), OR
             b. It is the opponent's' turn, and one of the children nodes is a losing node for the player (assumes your opponent plays perfectly; they'll' force you to lose if they can).
         NB: a draw (Board#tied?) is NOT a loss, if a node is a draw, losing_node? should return false.
     d. write #winning_node?(evaluator)
         i. Base case: the board is over AND
-            a. if winner is us, this is a winning node.
-            b. if winner is nil or the opponent, this is not a winning node.
+            a. if WINNER is us, this is a winning node.
+            b. if WINNER is nil or the opponent, this is not a winning node.
         ii. Recursive case:
             a. it is the player's' turn, and one of the children nodes is a winning node for the player (we'll' be smart and take that move), OR
-            b. it is the opponent's' turn, and all of the children nodes are winning nodes for the player (even TicTacToeKasparov can't' beat you from here).
+            b. it is the opponent's' turn, and all of the children nodes are winning nodes for the player
