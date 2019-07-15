@@ -3,19 +3,19 @@
 
 Phase 1.
 1. Create TicTacToeNode class
-    a. this will represent a TTT game-state:
-        i. store current state of the @board 
-        i. store @next_mover_mark of the player who will move next
-        i. store @prev_move_pos, if given
+    # a. this will represent a TTT game-state:
+    #     i. store current state of the @board 
+    #     i. store @next_mover_mark of the player who will move next
+    #     i. store @prev_move_pos, if given
     b. write #children
         i. returns nodes representing all potential game states one move after the current node.
-            a. to do that - iterate through all the positions that are @empty? on the board object.
-            b. for each empty position, create a node by duping the board and putting a @next_mover_mark in the position.
-            c. also, set @prev_move_pos to the position you just marked, for reasons that will make sense when we use it later.
+            # a. to do that - iterate through all the positions that are @empty? on the board object.
+            # b. for each empty position, create a node by duping the board and putting a @next_mover_mark in the position.
+            # c. also, set @prev_move_pos to the position you just marked, for reasons that will make sense when we use it later.
     c. write #losing_node?(evaluator)
-        i. Base Case: the board is over AND
-            a. if winner is the opponent, this is a losing node.
-            b. if winner is nil or us, this is not a losing node.
+        # i. Base Case: the board is over AND
+            # a. if winner is the opponent, this is a losing node.
+            # b. if winner is nil or us, this is not a losing node.
         ii. Recursive case:
             a. It is the player's' turn, and all the children nodes are losers for the player (anywhere they move they still lose), OR
             b. It is the opponent's' turn, and one of the children nodes is a losing node for the player (assumes your opponent plays perfectly; they'll' force you to lose if they can).
