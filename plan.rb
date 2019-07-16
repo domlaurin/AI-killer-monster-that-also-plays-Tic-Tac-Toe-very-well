@@ -1,18 +1,19 @@
 1. Write a TicTacToeNode class which uses the Board class from TTT solution.
 2. Write a SuperComputerPlayer class which builds on top of ComputerPlayer class from TTT solution.
 
-Phase 1.
-1. Create TicTacToeNode class
+# Phase 1.
+# 1. Create TicTacToeNode class
     # a. this will represent a TTT game-state:
     #     i. store current state of the @board 
     #     i. store @next_mover_mark of the player who will move next
+        i. you'll' want to alternate next_mover_mark so that next time the other player gets to move.
     #     i. store @prev_move_pos, if given
-    b. write #children
-        i. returns nodes representing all potential game states one move after the current node.
+    # b. write #children
+        # i. returns nodes representing all potential game states one move after the current node.
             # a. to do that - iterate through all the positions that are @empty? on the board object.
             # b. for each empty position, create a node by duping the board and putting a @next_mover_mark in the position.
             # c. also, set @prev_move_pos to the position you just marked, for reasons that will make sense when we use it later.
-    c. write #losing_node?(evaluator)
+    c. write losing_node?(evaluator)
         # i. Base Case: the board is over AND
             # a. if WINNER is the opponent, this is a losing node.
             # b. if WINNER is nil or us, this is not a losing node.
