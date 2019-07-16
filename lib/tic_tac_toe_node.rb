@@ -11,21 +11,33 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
-    return true if @board.over? && @board.winner != @next_mover_mark
-    return false if @board.over? && @board.winner == @next_mover_mark || nil
+    # debugger
+    return true if @board.over? && @board.winner != evaluator
+    return false if @board.over? && @board.winner == evaluator || nil
 
-    # if players turn
-    #   return evaluator.children.all? {|child| losing_node?(child)}
-    # end
-    # if opponents turn 
-    #   return evaluator.children.any? {|child| winning_node?(child)}
+    # if evaluator != @next_mover_mark
+    #   return self.children.all? {|child| losing_node?(child)}
+    # elsif evaluator == @next_mover_mark
+    #   return self.children.any? {|child| winning_node?(child)}
     # end
 
   end
 
-  def winning_node?(evaluator) #mark
-    return true if @board.over? && @board.winner != @next_mover_mark
-    return false if @board.over? && @board.winner == @next_mover_mark || nil
+
+
+
+
+
+
+
+
+
+
+
+  def winning_node?(evaluator)
+    # debugger
+    return true if @board.over? == true && @board.winner != @next_mover_mark
+    return false if @board.over? == true && @board.winner != @next_mover_mark || nil
 
     # #pseudo code:
     # players turn && evaluator.children.any? {|child| winning_node?(child)}
