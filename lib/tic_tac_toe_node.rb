@@ -1,24 +1,25 @@
-
-
-
-
-
 require_relative 'tic_tac_toe'
+require 'byebug'
 
 class TicTacToeNode
+  attr_reader  :board, :next_mover_mark, :prev_move_pos
+
   def initialize(board, next_mover_mark, prev_move_pos = nil)
     @board = board
-    @next_mover_mark = next_mover_mark #mark of the who will move next?
-    @prev_move_pos = prev_move_pos #position of the previous mark?
+    @next_mover_mark = next_mover_mark
+    @prev_move_pos = prev_move_pos 
   end
 
-  def losing_node?(evaluator) #evaluator is a particular mark
+  def losing_node?(evaluator)
     return true if @board.over? && @board.winner != @next_mover_mark
     return false if @board.over? && @board.winner == @next_mover_mark || nil
 
-    #pseudo code:
-    players turn && evaluator.children.all? {|child| losing_node?(child)}
-    opponents turn && evaluator.children.any? {|child| winning_node?(child)}
+    # if players turn
+    #   return evaluator.children.all? {|child| losing_node?(child)}
+    # end
+    # if opponents turn 
+    #   return evaluator.children.any? {|child| winning_node?(child)}
+    # end
 
   end
 
@@ -26,18 +27,23 @@ class TicTacToeNode
     return true if @board.over? && @board.winner != @next_mover_mark
     return false if @board.over? && @board.winner == @next_mover_mark || nil
 
-    #pseudo code:
-    players turn && evaluator.children.any? {|child| winning_node?(child)}
-    opponents turn && evaluator.children.all? {|child| losing_node?(child)}
+    # #pseudo code:
+    # players turn && evaluator.children.any? {|child| winning_node?(child)}
+    # opponents turn && evaluator.children.all? {|child| losing_node?(child)}
 
   end
 
   # This method generates an array of all moves that can be made after the current move.
   def children
     array = []
-    @board.each do |pos|
-      if @board.empty?(pos)
-        array << TicTacToeNode.new(@board.dup, @next_mover_mark, pos)
+    @board.rows.each_with_index do |row, i|
+      row.each_with_index do |pos, i2|
+
+        if pos == nil && @next_mover_mark == :o
+          array << TicTacToeNode.new(@board.dup, :x, [i,i2])
+        elsif pos == nil && @next_mover_mark == :x
+          array << TicTacToeNode.new(@board.dup, :o, [i,i2])
+        end
       end
     end
     array
